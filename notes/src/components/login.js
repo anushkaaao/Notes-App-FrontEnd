@@ -23,7 +23,7 @@ class LoginForm extends React.Component
             // "isLoggedIn":this.state.isLoggedIn
         };
 
-        await axios.post("http://localhost:8081/login", user).then(response => {  
+        await axios.post("http://login-info.azurewebsites.net/login", user).then(response => {  
             if(response.data==="success"){
             this.setState({isLoggedIn: true});
             //console.log(response);
@@ -65,7 +65,7 @@ class LoginForm extends React.Component
            <div className="row">
            <div className="col s4">
           
-             <form isLoggedIn={this.state.isLoggedIn} onSubmit={this.handleSubmit} style={{borderWidth:"2px",borderColor:"black",borderBlockWidth:"2px"}}>
+             <form onSubmit={this.handleSubmit} style={{borderWidth:"2px",borderColor:"black",borderBlockWidth:"2px"}}>
             
                <Form.Item className="input-field col s12" style={{
                left:"100%", marginTop:"30%"

@@ -18,7 +18,7 @@ class CreateNotesForm extends React.Component
     async componentDidUpdate() {
       let x = this.props.isEditing;
       if(x && this.state.counter === 0) {
-        await axios.get(`http://localhost:8082/notes/${this.props.noteId}`).then(res => 
+        await axios.get(`http://notes-info.azurewebsites.net/notes/${this.props.noteId}`).then(res => 
         this.setState({"email" : res.data.email, "title": res.data.title, "content": res.data.content}));
         x = false;
         this.setState({counter: 10});
@@ -36,7 +36,7 @@ class CreateNotesForm extends React.Component
         };
 
         if(this.props.isEditing) {
-          await axios.put(`http://localhost:8083/notes/${this.props.noteId}`, user).then(response => {
+          await axios.put(`http://notes-manipulation.azurewebsites.net/notes/${this.props.noteId}`, user).then(response => {
             console.log(response);
         })
         ;
@@ -50,7 +50,7 @@ class CreateNotesForm extends React.Component
         } else {
 
 
-        axios.post("http://localhost:8083/notes", user).then(response => {
+        axios.post("http://notes-manipulation.azurewebsites.net/notes", user).then(response => {
             //this.setState({[this.state.isLoggedIn]: true});
             console.log(response);
 

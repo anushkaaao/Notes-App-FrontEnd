@@ -26,7 +26,7 @@ class RegistrationForm extends React.Component {
       name: this.state.name,
     };
 
-    axios.post("http://localhost:8081/signup", user).then((response) => {
+    axios.post("http://login-info.azurewebsites.net/signup", user).then((response) => {
       console.log(response);
       this.props.history.push("/login");
     });

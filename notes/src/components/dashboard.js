@@ -15,8 +15,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 class Dashboard extends React.Component 
 {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {title: '', content: '', data: [],
     isEditing: false,
     noteId: ''};
@@ -41,17 +41,17 @@ class Dashboard extends React.Component
         window.location.href='/login';
         }
 
-       axios.get(`http://localhost:8082/notes/email/${window.sessionStorage.getItem("mail")}`).then(
+       axios.get(`http://notes-info.azurewebsites.net/notes/email/${window.sessionStorage.getItem("mail")}`).then(
         response => this.setState({data: response.data})
         );
     }
 
     async deletePost(id) {
-      await axios.delete(`http://localhost:8083/notes/${id}`).then(response=> window.location.reload());
+      await axios.delete(`http://notes-manipulation.azurewebsites.net/notes/${id}`).then(response=> window.location.reload());
    }
 
    async editPost(id) {
-    axios.get(`http://localhost:8082/notes/`+id).then((res) =>{
+    axios.get(`http://notes-info.azurewebsites.net/notes/`+id).then((res) =>{
     this.setState({'isEditing': true, "noteId": res.data.id,"title":res.data.title,"content":res.data.content});
   })
    }
